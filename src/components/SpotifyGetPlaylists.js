@@ -9,8 +9,8 @@ const SpotifyGetPlaylists = () => {
 
 
     useEffect(() => {
-        if (localStorage.getItem('loginParams')) {
-            setToken(localStorage.getItem('loginParams'))
+        if (localStorage.getItem('accessToken')) {
+            setToken(localStorage.getItem('accessToken'))
         }
     }, [])
 

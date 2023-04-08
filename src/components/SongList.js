@@ -5,7 +5,7 @@ import HBarChart from '../charts/HBarChart.js';
 
 const PROPERTY_ENDPOINT = "https://api.spotify.com/v1/audio-features"
 
-let songData = {};
+let songData = {val : [], tempo: "Not uploaded"};
 
 export const SongList = ({ searchedSongs }) => {
     const [isShown, setIsShown] = useState(false);
@@ -29,23 +29,20 @@ export const SongList = ({ searchedSongs }) => {
         }).then(res => {
             console.log(res.data)
             songData = {
-            // res.data.danceability,
-            // res.data.energy,
-            // res.data.valence,
-            // res.data.instrumentalness,
-            "data" : [
+            "val" : [
                         {"name": "Danceability", "value" : res.data.danceability},
                         {"name": "Energy", "value" : res.data.energy},
                         {"name": "Valence", "value" : res.data.valence}
                     ],
 
-            "tempo" : res.data.tempo
+            "tempo" : res.data.tempo.toFixed(0)
             }
         }).catch(err => {
             console.log(err)
         })
 
-    
+        
+        console.log("songData: ", songData);
         setIsShown(current => songId);
     }
     return (
@@ -58,7 +55,7 @@ export const SongList = ({ searchedSongs }) => {
                             <p style={{ marginBottom: '5px', marginTop: 0 }}>Name: {song.name}</p>
                             <p style={{ marginTop: 0 }}>Artists: {song.artists[0].name}</p>
                         </div>
-                        {(isShown === song.id) && <HBarChart data={songData.data}/>}
+                        {(isShown === song.id) && <HBarChart data={songData} />}
                     </div>
                 )
             })}

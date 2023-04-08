@@ -12,7 +12,7 @@ const HBarChart = ({ data }) => {
     return `${(tickItem).toFixed(0)}%`;
   };
 
-  const modifiedData = data.map((item) => ({
+  const modifiedData = (data.val).map((item) => ({
     ...item,
     Value: (item.value * 100).toFixed(1),
   }));
@@ -20,6 +20,7 @@ const HBarChart = ({ data }) => {
   const [showAverage, setShowAverage] = useState(false);
 
   const handleAverageClick = () => {
+    console.log("Data: ", data)
     setShowAverage(!showAverage);
   };
 
@@ -34,14 +35,14 @@ const HBarChart = ({ data }) => {
     : modifiedData;
 
   return (
-    <div>
-    <button onClick={handleAverageClick}>Toggle Average</button>
+    <div style={{ position: 'relative' }}>
+      <button onClick={handleAverageClick}>Toggle Average</button>
       <BarChart
         width={600}
         height={300}
         data={chartData}
         layout="vertical"
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 20, right: 30, left: 30, bottom: 5 }}
       >
         <XAxis type="number" domain={[0, 100]} tickFormatter={formatPercent} />
         <YAxis dataKey="name" type="category" />
@@ -50,6 +51,9 @@ const HBarChart = ({ data }) => {
         <Bar dataKey="Value" fill="#1db954" />
         {showAverage && <Bar dataKey="AvgValue" fill="gray" />}
       </BarChart>
+      <div style={{ position: 'absolute', top: '0px', right: '10px' }}>
+        <h3>Tempo: {data.tempo}</h3>
+      </div>
     </div>
   );
 };

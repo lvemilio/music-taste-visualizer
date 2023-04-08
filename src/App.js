@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import SpotifyGetPlaylists from "./components/SpotifyGetPlaylists"
 import axios from "axios"
 import { SongList } from "./components/SongList"
+
 const CLIENT_ID = "1d5ff11cd3b84c7d91841319d37e0573"
 const LINK = "https://accounts.spotify.com/authorize"
 const REDIRECT_URI = "http://localhost:3000"

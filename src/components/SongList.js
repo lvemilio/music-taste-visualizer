@@ -1,11 +1,24 @@
 import React from 'react'
 import axios from "axios"
+import {useEffect, useState} from 'react';
+import HBarChart from '../charts/HBarChart.js';
 
 const PROPERTY_ENDPOINT = "https://api.spotify.com/v1/audio-features"
 
+let songData = {};
+
 export const SongList = ({ searchedSongs }) => {
+    const [isShown, setIsShown] = useState(false);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        changeData();
+    }, []);
 
 
+    const changeData = () => {
+        setData(songData);
+    }
 
     const getSongProperties = (songId) => {
         const token = localStorage.getItem('accessToken')
@@ -14,10 +27,26 @@ export const SongList = ({ searchedSongs }) => {
                 Authorization: 'Bearer ' + token
             }
         }).then(res => {
-            console.log(res)
+            console.log(res.data)
+            songData = {
+            // res.data.danceability,
+            // res.data.energy,
+            // res.data.valence,
+            // res.data.instrumentalness,
+            "data" : [
+                        {"name": "Danceability", "value" : res.data.danceability},
+                        {"name": "Energy", "value" : res.data.energy},
+                        {"name": "Valence", "value" : res.data.valence}
+                    ],
+
+            "tempo" : res.data.tempo
+            }
         }).catch(err => {
             console.log(err)
         })
+
+    
+        setIsShown(current => songId);
     }
     return (
         <>
@@ -29,6 +58,7 @@ export const SongList = ({ searchedSongs }) => {
                             <p style={{ marginBottom: '5px', marginTop: 0 }}>Name: {song.name}</p>
                             <p style={{ marginTop: 0 }}>Artists: {song.artists[0].name}</p>
                         </div>
+                        {(isShown === song.id) && <HBarChart data={songData.data}/>}
                     </div>
                 )
             })}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import PlaylistIcon from '../resources/playlist-icon.png'
 import { PlaylistViz } from './PlaylistViz'
-
+import { Button } from './components/Button'
 const PLAYLIST_LINK = 'https://api.spotify.com/v1/me/playlists'
 const PLAYLIST_TRACKS = "https://api.spotify.com/v1/playlists"
 const PROPERTY_ENDPOINT = "https://api.spotify.com/v1/audio-features"
@@ -65,9 +65,6 @@ const SpotifyGetPlaylists = () => {
     }
 
     return (<>
-        <button onClick={getPlaylist}>Get My Playlists</button>
-
-
         {data != null &&
             data.map(playlist => {
                 return (
@@ -80,8 +77,8 @@ const SpotifyGetPlaylists = () => {
                         <PlaylistViz playlistProps={playlistProperties} />
                     </div>)
             })
-
         }
+        <Button onClick={getPlaylist} text={"Get My Playlists"} color={"rgb(11 161 120)"} hoverColor={"rgb(15 200 149)"}></Button>
     </>
     )
 }

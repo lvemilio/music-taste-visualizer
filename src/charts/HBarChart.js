@@ -26,16 +26,16 @@ const HBarChart = ({ data }) => {
 
   const chartData = showAverage
     ? modifiedData.map((item) => {
-        const avgItem = avgData.find((avg) => avg.name === item.name);
-        return {
-          ...item,
-          AvgValue: (avgItem ? avgItem.value : 0) * 100,
-        };
-      })
+      const avgItem = avgData.find((avg) => avg.name === item.name);
+      return {
+        ...item,
+        AvgValue: (avgItem ? avgItem.value : 0) * 100,
+      };
+    })
     : modifiedData;
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', fontSize: '15px' }}>
       <button onClick={handleAverageClick}>Toggle Average</button>
       <BarChart
         width={600}

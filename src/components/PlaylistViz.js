@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const PlaylistViz = ({ data }) => {
+export const PlaylistViz = ({ playlistProps }) => {
     //Probably continue here
-    console.log(data)
+    console.log(playlistProps)
     return (
         <div>PlaylistViz</div>
     )

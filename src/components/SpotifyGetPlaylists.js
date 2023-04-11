@@ -37,17 +37,23 @@ const SpotifyGetPlaylists = () => {
             headers: {
                 Authorization: 'Bearer ' + token
             }
-        }).then(res => {
-            console.log(res)
-            res.data.items.forEach(async (track) => {
-
+        }).then(tracks => {
+            console.log(tracks)
+            tracks.data.items.forEach(async (track) => {
+                console.log(track)
                 await axios.get(`${PROPERTY_ENDPOINT}/${track.track.id}`, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
                 }).then(res => {
                     console.log(res)
-                    setPlaylistProperties(curr => [...curr, res.data])
+                    setPlaylistProperties(curr => [...curr, {
+                        danceability: res.data.danceability,
+                        energy: res.data.energy,
+                        valence: res.data.valence,
+                        title: track.track.name,
+                        artist: track.track.artists[0].name
+                    }])
                 }).catch(err => {
                     console.log(err)
                 })
@@ -71,7 +77,7 @@ const SpotifyGetPlaylists = () => {
                             <p style={{ marginBottom: '5px', marginTop: 0 }}>Name: {playlist.name}</p>
                             <p style={{ marginTop: 0 }}>Owner: {playlist.owner.display_name}</p>
                         </div>
-                        <PlaylistViz data={playlistProperties} />
+                        <PlaylistViz playlistProps={playlistProperties} />
                     </div>)
             })
 

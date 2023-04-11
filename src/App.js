@@ -80,7 +80,7 @@ function App() {
             boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
             boxSizing: 'border-box'
           }} placeholder="Track name..." value={track} onChange={e => setTrack(e.target.value)}></input>
-          <Button text={"Search"} onClick={searchSongs} color={"rgb(19 132 59)"} hoverColor={"#1ED760"}></Button>
+          <Button text={"Search"} onClick={searchSongs} color={"rgb(19 132 59)"} hoverColor={"#1ED760"} />
           <StyledLine text={"Playlist Analysis"} />
           <SpotifyGetPlaylists />
         </div>}
@@ -90,7 +90,7 @@ function App() {
         left: "50%",
         transform: "translate(-50%, -50%)"
       }} onClick={handleLogIn}
-        color={"rgb(19 132 59)"} hoverColor={"#1ED760"} text={"Log In To Spotify"}></Button> :
+        color={"rgb(19 132 59)"} hoverColor={"#1ED760"} text={"Log In To Spotify"} /> :
         <Button style={{
           position: "fixed",
           top: "5%",
@@ -101,7 +101,7 @@ function App() {
             "rgb(99 113 104)"
           }
           hoverColor={"rgb(47 54 50)"}
-        >Logout</Button>}
+        />}
     </>
   );
 }

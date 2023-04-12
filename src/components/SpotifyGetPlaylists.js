@@ -11,6 +11,7 @@ const SpotifyGetPlaylists = () => {
     const [token, setToken] = useState('')
     const [data, setData] = useState(null)
     const [playlistProperties, setPlaylistProperties] = useState([])
+    const [currentPlaylist, setCurrentPlaylist] = useState(null)
 
     useEffect(() => {
         if (localStorage.getItem('accessToken')) {
@@ -32,6 +33,7 @@ const SpotifyGetPlaylists = () => {
     }
 
     const getPlaylistProperties = (playlistId) => {
+        setCurrentPlaylist(playlistId)
         setPlaylistProperties([])
         axios.get(`${PLAYLIST_TRACKS}/${playlistId}/tracks`, {
             headers: {
@@ -75,7 +77,7 @@ const SpotifyGetPlaylists = () => {
                             <p style={{ marginBottom: '5px', marginTop: 0 }}>Name: {playlist.name}</p>
                             <p style={{ marginTop: 0 }}>Owner: {playlist.owner.display_name}</p>
                         </div>
-                        <PlaylistViz playlistProps={playlistProperties} />
+                        {playlist.id === currentPlaylist && <PlaylistViz playlistProps={playlistProperties} />}
                     </div>)
             })
         }

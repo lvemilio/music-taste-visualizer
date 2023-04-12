@@ -48,11 +48,12 @@ const SpotifyGetPlaylists = () => {
                 }).then(res => {
                     console.log(res)
                     setPlaylistProperties(curr => [...curr, {
-                        danceability: res.data.danceability,
-                        energy: res.data.energy,
-                        valence: res.data.valence,
-                        title: track.track.name,
-                        artist: track.track.artists[0].name
+                        Danceability: res.data.danceability,
+                        Energy: res.data.energy,
+                        Valence: res.data.valence,
+                        Title: track.track.name,
+                        Artist: track.track.artists[0].name,
+                        Tempo: res.data.tempo / 200
                     }])
                 }).catch(err => {
                     console.log(err)

@@ -52,7 +52,7 @@ const HBarChart = ({ data }) => {
         {showAverage && <Bar dataKey="AvgValue" fill="gray" />}
       </BarChart>
       <div style={{ position: 'absolute', top: '0px', right: '10px' }}>
-        <h3>Tempo: {data.tempo}</h3>
+        <h3>Tempo: {data.tempo} BPM</h3>
       </div>
     </div>
   );

@@ -79,7 +79,7 @@ const SpotifyGetPlaylists = () => {
                     </div>)
             })
         }
-        <Button onClick={getPlaylist} text={"Get My Playlists"} color={"rgb(11 161 120)"} hoverColor={"rgb(15 200 149)"}></Button>
+        <Button onClick={getPlaylist} text={"Get My Playlists"} color={"rgb(11 161 120)"} hoverColor={"rgb(15 200 149)"} />
     </>
     )
 }

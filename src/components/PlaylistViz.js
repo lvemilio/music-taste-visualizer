@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsHeatmap from 'highcharts/modules/heatmap';
 import HighchartsReact from 'highcharts-react-official';
@@ -31,23 +31,15 @@ function parseData(playlistData) {
 export const PlaylistViz = ({ playlistProps }) => {
   console.log("Op", playlistProps)
 
-  const calculateAverages = () => {
-    const avgProps = {
-      avgDanceability: 0,
-      avgValence: 0,
-      avgEnergy: 0,
-      avgTempo: 0
-    }
-    playlistProps.forEach((stat) => {
-      avgProps.avgDanceability += stat.Danceability / playlistProps.length
-      avgProps.avgEnergy += stat.Energy / playlistProps.length
-      avgProps.avgValence += stat.Valence / playlistProps.length
-      avgProps.avgTempo += stat.Tempo / playlistProps.length
+  const calculateAvgStat = (stat) => {
+    let avgStat = 0
+    playlistProps.forEach((track) => {
+      avgStat += track[stat]
     })
 
-    return avgProps
+    return avgStat / playlistProps.length
   }
-  console.log(calculateAverages())
+  console.log(calculateAvgStat('Danceability'))
 
   const options = {
     chart: {

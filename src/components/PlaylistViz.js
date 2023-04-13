@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsHeatmap from 'highcharts/modules/heatmap';
 import HighchartsReact from 'highcharts-react-official';
@@ -46,21 +46,14 @@ export const PlaylistViz = ({ playlistProps }) => {
     title: {
       text: 'Heatmap of playlist song parametrs',
       style: {
-          fontSize: '20px',
-          fontFamily: 'Baloo 2',
-        },
+        fontSize: '20px',
+        fontFamily: 'Baloo 2',
+      },
     },
     xAxis: {
       min: 1,
       max: playlistProps.length,
       tickInterval: 1,
-      labels: {
-        step: 1,
-        style: {
-          fontSize: '14px',
-          fontFamily: 'Baloo 2',
-        },
-      },
       gridLineWidth: 0,
       lineWidth: 0.5,
       lineColor: 'rgba(0,0,0,0.75)',
@@ -88,18 +81,18 @@ export const PlaylistViz = ({ playlistProps }) => {
     },
     tooltip: {
       formatter: function () {
-        if (this.point.options.y == 3) {
-            this.point.value = (this.point.options.value * 200).toFixed(0) + " BPM"
-            this.point.avg = (calculateAvgStat('Tempo') * 200).toFixed(0) + " BPM"
-        } else if (this.point.options.y == 2) {
-            this.point.value = (this.point.options.value * 100).toFixed(1) + '%'
-            this.point.avg = (calculateAvgStat('Danceability') * 100).toFixed(1) + "%"
-        } else if (this.point.options.y == 1) {
-            this.point.value = (this.point.options.value * 100).toFixed(1) + '%'
-            this.point.avg = (calculateAvgStat('Energy') * 100).toFixed(1) + "%"
-        } else if (this.point.options.y == 0) {
-            this.point.value = (this.point.options.value * 100).toFixed(1) + '%'
-            this.point.avg = (calculateAvgStat('Valence') * 100).toFixed(1) + "%"
+        if (this.point.options.y === 3) {
+          this.point.value = (this.point.options.value * 200).toFixed(0) + " BPM"
+          this.point.avg = (calculateAvgStat('Tempo') * 200).toFixed(0) + " BPM"
+        } else if (this.point.options.y === 2) {
+          this.point.value = (this.point.options.value * 100).toFixed(1) + '%'
+          this.point.avg = (calculateAvgStat('Danceability') * 100).toFixed(1) + "%"
+        } else if (this.point.options.y === 1) {
+          this.point.value = (this.point.options.value * 100).toFixed(1) + '%'
+          this.point.avg = (calculateAvgStat('Energy') * 100).toFixed(1) + "%"
+        } else if (this.point.options.y === 0) {
+          this.point.value = (this.point.options.value * 100).toFixed(1) + '%'
+          this.point.avg = (calculateAvgStat('Valence') * 100).toFixed(1) + "%"
         }
         return (
           '<b>Title: </b>' +
@@ -115,28 +108,28 @@ export const PlaylistViz = ({ playlistProps }) => {
     },
     colorAxis: {
       stops: [
-            [0, '#C3DAC4'],
-            [0.25, '#88B589'],
-            [0.5, '#4C904E'],
-            [0.75, '#2D692F'],
-            [1.0, '#1C411D'],
-          ],
-          labels: {
-            formatter: function() {
-              if (this.pos === 0) {
-                return '0%';
-              } else if (this.pos === 0.25) {
-                return '25%';
-              } else if (this.pos === 0.5) {
-                return '50%';
-              } else if (this.pos === 0.75) {
-                return '75%';
-              } else if (this.pos === 1.0) {
-                return '100%';
-              }
-            }
+        [0, '#C3DAC4'],
+        [0.25, '#88B589'],
+        [0.5, '#4C904E'],
+        [0.75, '#2D692F'],
+        [1.0, '#1C411D'],
+      ],
+      labels: {
+        formatter: function () {
+          if (this.pos === 0) {
+            return '0%';
+          } else if (this.pos === 0.25) {
+            return '25%';
+          } else if (this.pos === 0.5) {
+            return '50%';
+          } else if (this.pos === 0.75) {
+            return '75%';
+          } else if (this.pos === 1.0) {
+            return '100%';
           }
-        },
+        }
+      }
+    },
 
     series: [
       {

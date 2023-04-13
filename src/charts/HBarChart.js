@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 
 const avgPartyData = [
@@ -79,71 +79,71 @@ const HBarChart = ({ data }) => {
         label: 'Average Value'
       };
     })
-    : showAverage[2] ? modifiedData.map((item) => {
-      const avgItem = avgDinnerData.find((avg) => avg.name === item.name);
-      return {
-        ...item,
-        AvgValue: (avgItem ? avgItem.value : 0) * 100,
-        label: 'Average Value'
-      };
-    })
-    : modifiedData;
+      : showAverage[2] ? modifiedData.map((item) => {
+        const avgItem = avgDinnerData.find((avg) => avg.name === item.name);
+        return {
+          ...item,
+          AvgValue: (avgItem ? avgItem.value : 0) * 100,
+          label: 'Average Value'
+        };
+      })
+        : modifiedData;
 
   return (
 
     <div style={{ position: 'relative', fontSize: '15px' }}>
-    <div style={{  }}>
-      <button onClick={handleAveragePartyClick} style={{
-        backgroundColor: showAverage[0] ? '#1ED760' : 'rgb(19 132 59)',
-        color: 'white',
-        padding: '10px',
-        margin: '10px',
-        borderRadius: '5px',
-        border: 'none',
-        cursor: 'pointer',
-        outline: 'none',
-        fontWeight: 'bold',
-        transition: 'background-color 0.2s ease-in-out'
+      <div style={{}}>
+        <button onClick={handleAveragePartyClick} style={{
+          backgroundColor: showAverage[0] ? '#1ED760' : 'rgb(19 132 59)',
+          color: 'white',
+          padding: '10px',
+          margin: '10px',
+          borderRadius: '5px',
+          border: 'none',
+          cursor: 'pointer',
+          outline: 'none',
+          fontWeight: 'bold',
+          transition: 'background-color 0.2s ease-in-out'
         }}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#1ED760'}
-        onMouseOut={(e) => e.target.style.backgroundColor = showAverage[0] ? '#1ED760' : 'rgb(19 132 59)'}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#1ED760'}
+          onMouseOut={(e) => e.target.style.backgroundColor = showAverage[0] ? '#1ED760' : 'rgb(19 132 59)'}
         >
-        Average Party Song
-      </button>
-       <button onClick={handleAverageWorkoutClick} style={{
-        backgroundColor: showAverage[1] ? '#1ED760' : 'rgb(19 132 59)',
-        color: 'white',
-        padding: '10px',
-        margin: '10px',
-        borderRadius: '5px',
-        border: 'none',
-        cursor: 'pointer',
-        outline: 'none',
-        fontWeight: 'bold',
-        transition: 'background-color 0.2s ease-in-out'
+          Average Party Song
+        </button>
+        <button onClick={handleAverageWorkoutClick} style={{
+          backgroundColor: showAverage[1] ? '#1ED760' : 'rgb(19 132 59)',
+          color: 'white',
+          padding: '10px',
+          margin: '10px',
+          borderRadius: '5px',
+          border: 'none',
+          cursor: 'pointer',
+          outline: 'none',
+          fontWeight: 'bold',
+          transition: 'background-color 0.2s ease-in-out'
         }}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#1ED760'}
-        onMouseOut={(e) => e.target.style.backgroundColor = showAverage[1] ? '#1ED760' : 'rgb(19 132 59)'}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#1ED760'}
+          onMouseOut={(e) => e.target.style.backgroundColor = showAverage[1] ? '#1ED760' : 'rgb(19 132 59)'}
         >
-        Average Workout Song
-      </button>
-       <button onClick={handleAverageDinnerClick} style={{
-        backgroundColor: showAverage[2] ? '#1ED760' : 'rgb(19 132 59)',
-        color: 'white',
-        padding: '10px',
-        margin: '10px',
-        borderRadius: '5px',
-        border: 'none',
-        cursor: 'pointer',
-        outline: 'none',
-        fontWeight: 'bold',
-        transition: 'background-color 0.2s ease-in-out'
+          Average Workout Song
+        </button>
+        <button onClick={handleAverageDinnerClick} style={{
+          backgroundColor: showAverage[2] ? '#1ED760' : 'rgb(19 132 59)',
+          color: 'white',
+          padding: '10px',
+          margin: '10px',
+          borderRadius: '5px',
+          border: 'none',
+          cursor: 'pointer',
+          outline: 'none',
+          fontWeight: 'bold',
+          transition: 'background-color 0.2s ease-in-out'
         }}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#1ED760'}
-        onMouseOut={(e) => e.target.style.backgroundColor = showAverage[2] ? '#1ED760' : 'rgb(19 132 59)'}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#1ED760'}
+          onMouseOut={(e) => e.target.style.backgroundColor = showAverage[2] ? '#1ED760' : 'rgb(19 132 59)'}
         >
-        Average Dinner Song
-      </button>
+          Average Dinner Song
+        </button>
       </div>
       <BarChart
         width={700}
@@ -164,15 +164,15 @@ const HBarChart = ({ data }) => {
       <div style={{ position: 'absolute', top: '45px', right: '10px', textAlign: 'right' }}>
         <h3 style={{ margin: '0' }}>Tempo: {data.tempo} BPM</h3>
         {showAverage[0] && <h3 style={{ margin: '0' }}>Average Party Song Tempo: {avgPartyData[3].value} BPM</h3>}
-      </div> 
+      </div>
       <div style={{ position: 'absolute', top: '45px', right: '10px', textAlign: 'right' }}>
         <h3 style={{ margin: '0' }}>Tempo: {data.tempo} BPM</h3>
         {showAverage[1] && <h3 style={{ margin: '0' }}>Average Workout Song Tempo: {avgWorkoutData[3].value} BPM</h3>}
-      </div> 
+      </div>
       <div style={{ position: 'absolute', top: '45px', right: '10px', textAlign: 'right' }}>
         <h3 style={{ margin: '0' }}>Tempo: {data.tempo} BPM</h3>
         {showAverage[2] && <h3 style={{ margin: '0' }}>Average Dinner Song Tempo: {avgDinnerData[3].value} BPM</h3>}
-      </div> 
+      </div>
     </div>
   );
 };
